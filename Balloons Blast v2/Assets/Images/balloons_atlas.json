@@ -1,0 +1,19 @@
+{
+  "frames": [
+    { "filename": "balloon_black.png", "frame": {"x": 1,"y": 108,"w": 128,"h": 166}, "rotated": false, "sourceSize": {"w": 128,"h": 166}, "spriteSourceSize": {"x": 0,"y": 0,"w": 64,"h": 64}, "trimmed": false },
+    { "filename": "balloon_blue.png", "frame": {"x": 195,"y": 311,"w": 128,"h": 166}, "rotated": false, "sourceSize": {"w": 128,"h": 166}, "spriteSourceSize": {"x": 0,"y": 0,"w": 64,"h": 64}, "trimmed": false },
+    { "filename": "balloon_gold.png", "frame": {"x": 411,"y": 626,"w": 128,"h": 166}, "rotated": false, "sourceSize": {"w": 128,"h": 166}, "spriteSourceSize": {"x": 0,"y": 0,"w": 64,"h": 64}, "trimmed": false },
+    { "filename": "balloon_gray.png", "frame": {"x": 605,"y": 829,"w": 128,"h": 166}, "rotated": false, "sourceSize": {"w": 128,"h": 166}, "spriteSourceSize": {"x": 0,"y": 0,"w": 64,"h": 64}, "trimmed": false },
+    { "filename": "balloon_green.png", "frame": {"x": 735,"y": 829,"w": 128,"h": 166}, "rotated": false, "sourceSize": {"w": 128,"h": 166}, "spriteSourceSize": {"x": 0,"y": 0,"w": 64,"h": 64}, "trimmed": false },
+    { "filename": "balloon_green2.png", "frame": {"x": 865,"y": 829,"w": 128,"h": 166}, "rotated": false, "sourceSize": {"w": 128,"h": 166}, "spriteSourceSize": {"x": 0,"y": 0,"w": 64,"h": 64}, "trimmed": false },
+    { "filename": "balloon_marron.png", "frame": {"x": 411,"y": 458,"w": 128,"h": 166}, "rotated": false, "sourceSize": {"w": 128,"h": 166}, "spriteSourceSize": {"x": 0,"y": 0,"w": 64,"h": 64}, "trimmed": false },
+    { "filename": "balloon_orange.png", "frame": {"x": 131,"y": 108,"w": 128,"h": 166}, "rotated": false, "sourceSize": {"w": 128,"h": 166}, "spriteSourceSize": {"x": 0,"y": 0,"w": 64,"h": 64}, "trimmed": false },
+    { "filename": "balloon_pink.png", "frame": {"x": 541,"y": 626,"w": 128,"h": 166}, "rotated": false, "sourceSize": {"w": 128,"h": 166}, "spriteSourceSize": {"x": 0,"y": 0,"w": 64,"h": 64}, "trimmed": false },
+    { "filename": "balloon_pink2.png", "frame": {"x": 541,"y": 458,"w": 128,"h": 166}, "rotated": false, "sourceSize": {"w": 128,"h": 166}, "spriteSourceSize": {"x": 0,"y": 0,"w": 64,"h": 64}, "trimmed": false },
+    { "filename": "balloon_purple.png", "frame": {"x": 671,"y": 661,"w": 128,"h": 166}, "rotated": false, "sourceSize": {"w": 128,"h": 166}, "spriteSourceSize": {"x": 0,"y": 0,"w": 64,"h": 64}, "trimmed": false },
+    { "filename": "balloon_red.png", "frame": {"x": 671,"y": 493,"w": 128,"h": 166}, "rotated": false, "sourceSize": {"w": 128,"h": 166}, "spriteSourceSize": {"x": 0,"y": 0,"w": 64,"h": 64}, "trimmed": false },
+    { "filename": "balloon_turkoise.png", "frame": {"x": 801,"y": 661,"w": 128,"h": 166}, "rotated": false, "sourceSize": {"w": 128,"h": 166}, "spriteSourceSize": {"x": 0,"y": 0,"w": 64,"h": 64}, "trimmed": false },
+    { "filename": "balloon_white.png", "frame": {"x": 801,"y": 493,"w": 128,"h": 166}, "rotated": false, "sourceSize": {"w": 128,"h": 166}, "spriteSourceSize": {"x": 0,"y": 0,"w": 64,"h": 64}, "trimmed": false }
+  ],
+  "meta": { "app": "balloons", "format": "RGBA8888", "image": "balloons.png", "scale": 1.0, "size": { "w": 128,"h": 166}, "version": "1.0.0" }
+}
