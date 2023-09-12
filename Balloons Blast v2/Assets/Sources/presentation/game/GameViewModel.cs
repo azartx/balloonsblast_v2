@@ -14,9 +14,7 @@ namespace Game
         {
             initViewModel();
         }
-
-        private IDisposable balloonsStreamDisposable;
-
+        
         private Dictionary<string, Sprite> balloonsSprites;
 
         private Random rand = new Random();
@@ -24,26 +22,19 @@ namespace Game
         private async void initViewModel()
         {
             balloonsSprites = await BalloonsLoader.instance.loadBalloons();
-            
-           // startGame();
+            // инициализация шаров. Надо бы вынести инициализацию на сплэш чтобы тут уже были готовые спрайты
         }
 
         public IObservable<Sprite> startGame()
         {
-            //balloonsStreamDisposable?.Dispose();
             return Observable
                 .Interval(new TimeSpan(0, 0, 0, 2))
                 .Select(x => balloonsSprites.ElementAt(rand.Next(0, balloonsSprites.Count)).Value);
-            /*.Subscribe(str =>
-            {
-                Debug.Log("11111111111 : "+str);
-            });*/
         }
 
         public void stopGame()
         {
-            balloonsStreamDisposable?.Dispose();
-            balloonsStreamDisposable = null;
+            // todo
         }
     }
 }

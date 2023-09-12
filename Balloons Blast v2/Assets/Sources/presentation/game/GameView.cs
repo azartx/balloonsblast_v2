@@ -1,4 +1,3 @@
-using System;
 using UniRx;
 using UnityEngine;
 
@@ -8,8 +7,6 @@ namespace Game
     {
         private GameViewModel viewModel;
 
-        public IObservable<Sprite> balloonsStream;
-
         private void Start()
         {
             viewModel = new GameViewModel();
@@ -17,10 +14,17 @@ namespace Game
             viewModel.startGame()
                 .Subscribe(balloonSprite =>
                 {
-                    Debug.Log(balloonSprite.name);
+                    var gameObj = new GameObject();
+                    var spriteRenderer = gameObj.AddComponent<SpriteRenderer>();
+                    spriteRenderer.sprite = balloonSprite;
+
+                    var count = 0;
+                    while (count < 20)
+                    {
+                        gameObj.transform.position = new Vector3(5, 5, 5);
+                        count = + 1;
+                    }
                 });
         }
     }
 }
-
-
