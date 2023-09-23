@@ -20,4 +20,10 @@ public class MenuViewModel : MonoBehaviour
     {
         Debug.Log("Clicked!");
     }
+
+    public void QuitGame()
+    {
+        Debug.Log("QuitGame()");
+        Application.Quit();
+    }
 }
