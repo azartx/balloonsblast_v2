@@ -1,3 +1,4 @@
+using System.Collections;
 using UniRx;
 using UnityEngine;
 
@@ -14,17 +15,40 @@ namespace Game
             viewModel.startGame()
                 .Subscribe(balloonSprite =>
                 {
-                    var gameObj = new GameObject();
-                    var spriteRenderer = gameObj.AddComponent<SpriteRenderer>();
-                    spriteRenderer.sprite = balloonSprite;
-
-                    var count = 0;
-                    while (count < 20)
-                    {
-                        gameObj.transform.position = new Vector3(5, 5, 5);
-                        count = + 1;
-                    }
+                    StartCoroutine(
+                        MoveBalloon(
+                            CreateBalloon(balloonSprite)
+                            )
+                        );
                 });
+        }
+        
+        // todo Добавить переиспользование шаров. Создать пул шаров
+        private GameObject CreateBalloon(Sprite balloonSprite)
+        {
+            var gameObj = new GameObject();
+            var spriteRenderer = gameObj.AddComponent<SpriteRenderer>();
+            spriteRenderer.sprite = balloonSprite;
+            return gameObj;
+        }
+
+        /*
+         * todo
+         * 1. Сделать движение шара и его уничтожение после выхода за границы экрана
+         */
+        private IEnumerator MoveBalloon(GameObject obj)
+        {
+            var count = 0;
+            while (count < 20)
+            {
+                print("Iteration");
+                obj.transform.Translate(
+                    new Vector3(0, 0.2f, 0)
+                );
+                count = +1;
+                yield return new WaitForFixedUpdate();
+            }
+            yield return null;
         }
     }
 }
