@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MenuViewModel : MonoBehaviour
 {
@@ -16,9 +17,10 @@ public class MenuViewModel : MonoBehaviour
         
     }
 
-    public void printSomeLog()
+    public void navigateToGame()
     {
-        Debug.Log("Clicked!");
+        Debug.Log("Go to game!");
+        SceneManager.LoadScene(Screens.GAME);
     }
 
     public void QuitGame()

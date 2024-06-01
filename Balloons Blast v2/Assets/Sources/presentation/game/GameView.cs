@@ -35,9 +35,12 @@ namespace Game
             // Создаём шар
             GameObject gameObj = new GameObject();
 
+            gameObj.transform.SetParent(gameObject.transform);
+
             // вешаем модельку шара
             SpriteRenderer spriteRenderer = gameObj.AddComponent<SpriteRenderer>();
             spriteRenderer.sprite = balloonSprite;
+            spriteRenderer.sortingOrder = 5;
 
             // вешаем коллайдер для того чтобы объект был физическим
             BoxCollider2D collider = gameObj.AddComponent<BoxCollider2D>();
