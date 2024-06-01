@@ -2,6 +2,7 @@ using System.Collections;
 using UniRx;
 using UnityEngine;
 using Random = System.Random;
+using UnityEngine.UI;
 
 namespace Game
 {
@@ -31,9 +32,19 @@ namespace Game
         // todo Добавить переиспользование шаров. Создать пул шаров
         private GameObject CreateBalloon(Sprite balloonSprite)
         {
-            var gameObj = new GameObject();
-            var spriteRenderer = gameObj.AddComponent<SpriteRenderer>();
+            // Создаём шар
+            GameObject gameObj = new GameObject();
+
+            // вешаем модельку шара
+            SpriteRenderer spriteRenderer = gameObj.AddComponent<SpriteRenderer>();
             spriteRenderer.sprite = balloonSprite;
+
+            // вешаем коллайдер для того чтобы объект был физическим
+            BoxCollider2D collider = gameObj.AddComponent<BoxCollider2D>();
+
+            // Вешаем обработчик кликов, клики будут приходить в него
+            gameObj.AddComponent<BalloonClickHandler>();
+
             return gameObj;
         }
 
@@ -46,7 +57,12 @@ namespace Game
             var count = 0;
             while (count < 20)
             {
-                print("Iteration");
+                if (obj == null)
+                {
+                    print("Объект уже удалён, заканчиваю цикл");
+                    yield break;
+                }
+                
                 obj.transform.Translate(
                     new Vector3(0, speed, 0)
                 );
@@ -54,7 +70,7 @@ namespace Game
 
                 if (obj.transform.position.y > screenTopRight.Value.y)
                 {
-                    Debug.LogError("Объект вышел за границы, удаление");
+                    print("Объект вышел за границы, удаление");
                     Destroy(obj);
                     yield break;
                 }
@@ -68,6 +84,11 @@ namespace Game
         {
             // Перемещаем объект в выбранное место
             obj.transform.position = viewModel.getRandomBottomPoint(obj.transform.position.z);
+        }
+
+        private void onBalloonClicked(GameObject obj)
+        {
+            print("Click!");
         }
     }
 }
