@@ -1,34 +1,46 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.U2D;
+using System;
 
 namespace Sources.data
 {
     public class BalloonsLoader
     {
-        public static BalloonsLoader instance = new();
-        
         private BalloonsLoader() {}
         
-        public Dictionary<string, Sprite> spriteDic = new();
-        
-        public Task<Dictionary<string, Sprite>> loadBalloons()
+        private static readonly string[] spriteNames =
         {
-            var balloonSprites = Resources.LoadAll<Sprite>("balloons");
-            
-            if (balloonSprites == null || balloonSprites.Length <= 0)
+            "black",
+                "blue",
+                "green",
+                "grey",
+                "orange",
+                "pink",
+                "red",
+                "white"
+        };
+
+        private static Lazy<SpriteAtlas> lazyAtlas =
+            new Lazy<SpriteAtlas>(() => loadBalloons());
+        
+        private static SpriteAtlas loadBalloons()
+        {
+            SpriteAtlas atlas = Resources.Load<SpriteAtlas>("balloons_atlas");
+
+            if (atlas == null)
             {
-                Debug.LogError("The Provided Base-Atlas Sprite `" + "balloons" + "` does not exist!");
-                return Task.FromResult<Dictionary<string, Sprite>>(null);
+                Debug.LogError("Атлас не найден: balloons_atlas");
             }
 
-            foreach (var t in balloonSprites)
-            {
-                Debug.Log(t.name + " ---- ");
-                spriteDic.Add(t.name, t);
-            }
+            return atlas;
+        }
 
-            return Task.FromResult(spriteDic);
+        public static Sprite getRandomBalloonSprite()
+        {
+            return lazyAtlas.Value
+                .GetSprite(spriteNames[UnityEngine.Random.Range(0, spriteNames.Length)]);
         }
     }
 }
