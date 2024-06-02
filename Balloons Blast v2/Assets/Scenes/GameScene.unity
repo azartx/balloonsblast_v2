@@ -501,6 +501,7 @@ GameObject:
   m_Component:
   - component: {fileID: 930629889}
   - component: {fileID: 930629888}
+  - component: {fileID: 930629890}
   m_Layer: 0
   m_Name: BackgroundAudio
   m_TagString: Untagged
@@ -619,6 +620,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &930629890
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 930629887}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4842abf941946946bdfddac65b26560, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  backgroundAudio: {fileID: 930629888}
 --- !u!1 &963682774
 GameObject:
   m_ObjectHideFlags: 0
@@ -676,6 +690,7 @@ GameObject:
   - component: {fileID: 1155854163}
   - component: {fileID: 1155854162}
   - component: {fileID: 1155854167}
+  - component: {fileID: 1155854168}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -776,6 +791,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1155854161}
   m_CullTransparentMesh: 1
+--- !u!114 &1155854168
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1155854161}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6f63dad5861d82488c69666d8f8418a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1831395116
 GameObject:
   m_ObjectHideFlags: 0

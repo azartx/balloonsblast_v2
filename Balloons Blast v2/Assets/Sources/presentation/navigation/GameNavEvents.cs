@@ -20,6 +20,24 @@ public class GameNavEvents : MonoBehaviour
         }
     }
     
+    void Update()
+    {
+        // Проверяем нажатие на кнопку "назад" на мобильном устройстве
+        if (Input.GetKeyUp(KeyCode.Escape))
+        {
+            int sceneIndex = SceneManager.GetActiveScene().buildIndex;
+
+            if (sceneIndex == Screens.MENU)
+            {
+                Application.Quit();
+            }
+            else if (sceneIndex == Screens.GAME)
+            {
+                SceneManager.LoadScene(Screens.MENU);
+            }
+        }
+    }
+
     private void OnBackButtonClicked()
     {
         SceneManager.LoadScene(Screens.MENU);
