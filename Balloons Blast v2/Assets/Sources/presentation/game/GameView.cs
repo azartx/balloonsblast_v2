@@ -40,7 +40,14 @@ namespace Game
             // вешаем модельку шара
             SpriteRenderer spriteRenderer = gameObj.AddComponent<SpriteRenderer>();
             spriteRenderer.sprite = balloonSprite;
-            spriteRenderer.sortingOrder = 5;
+
+            // увиличиваю размер шара в полтора раза
+            spriteRenderer.transform.localScale =
+                new Vector3(
+                    gameObj.transform.localScale.x * 1.5f,
+                    gameObj.transform.localScale.y * 1.5f,
+                    gameObj.transform.localScale.z
+                    );
 
             // вешаем коллайдер для того чтобы объект был физическим
             BoxCollider2D collider = gameObj.AddComponent<BoxCollider2D>();
@@ -55,7 +62,7 @@ namespace Game
         {
             placeBalloonOnRandomBottomPoint(obj);
 
-            float speed = UnityEngine.Random.Range(0.05f, 0.2f);
+            float speed = UnityEngine.Random.Range(0.009f, 0.018f);
 
             var count = 0;
             while (count < 20)
@@ -78,20 +85,15 @@ namespace Game
                     yield break;
                 }
 
-                yield return new WaitForFixedUpdate();
+                yield return new WaitForEndOfFrame();
             }
             yield return null;
         }
 
         private void placeBalloonOnRandomBottomPoint(GameObject obj)
         {
-            // Перемещаем объект в выбранное место
+            // Перемещаем шар вниз экрана
             obj.transform.position = viewModel.getRandomBottomPoint(obj.transform.position.z);
-        }
-
-        private void onBalloonClicked(GameObject obj)
-        {
-            print("Click!");
         }
     }
 }

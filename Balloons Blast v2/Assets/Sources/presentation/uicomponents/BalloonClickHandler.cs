@@ -16,23 +16,25 @@ public class BalloonClickHandler : MonoBehaviour {
 
     void OnMouseDown()
     {
-        Debug.Log("Object clicked: " + gameObject.name);
-
+        // Удаляю шар
         Destroy(gameObject);
 
-        System.Random random = new System.Random();
-        int randomIndex = random.Next(prefabsPaths.Count);
-        string prefabPath = prefabsPaths[randomIndex];
+        // Забираю из ресурсов анимацию  взрыва
+        GameObject prefab = ExplosionLoader.GetExplosion(gameObject);
 
-        GameObject particlePrefab = Resources.Load<GameObject>(prefabPath);
+        // Создаю копию префаба на месте удаленного шара
+        GameObject explosion = Instantiate(
+            prefab,
+            transform.position,
+            Quaternion.identity
+            );
         
-        GameObject particles = Instantiate(particlePrefab, transform.position, Quaternion.identity);
+        // запускаю анимацию префаба (взрыв)
+        explosion.GetComponent<ParticleSystem>().Play();
 
-        ParticleSystem particleSystem = particles.GetComponent<ParticleSystem>();
-
-        if (particleSystem != null)
-        {
-            particleSystem.Play();
-        }
+        // Добавляем компонент аудио для проигрыша звука взрыва и запускаем
+        AudioSource clap = explosion.AddComponent<AudioSource>();
+        clap.clip = AudioLoader.RandomClap();
+        clap.Play();
     }
 }
