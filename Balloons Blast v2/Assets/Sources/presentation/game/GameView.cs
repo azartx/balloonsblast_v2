@@ -8,7 +8,7 @@ namespace Game
 {
     public class GameView : MonoBehaviour
     {
-        private GameViewModel viewModel;
+        private GameViewModel viewModel = new GameViewModel();
 
         private System.Lazy<Vector3> screenTopRight;
 
@@ -16,8 +16,6 @@ namespace Game
         {
             screenTopRight = new System.Lazy<Vector3>(() =>
                 Camera.main.ViewportToWorldPoint(new Vector3(1, 1, Camera.main.nearClipPlane)));
-
-            viewModel = new GameViewModel();
 
             viewModel.addBalloonsSpawnerDisposable
                 (
@@ -42,6 +40,7 @@ namespace Game
             spriteRenderer.sprite = balloonSprite;
 
             // увиличиваю размер шара в полтора раза
+            // TODO: Шары разного размера?
             spriteRenderer.transform.localScale =
                 new Vector3(
                     gameObj.transform.localScale.x * 1.5f,
@@ -62,7 +61,7 @@ namespace Game
         {
             placeBalloonOnRandomBottomPoint(obj);
 
-            float speed = UnityEngine.Random.Range(0.009f, 0.018f);
+            float speed = UnityEngine.Random.Range(0.009f, 0.028f);
 
             var count = 0;
             while (count < 20)
@@ -92,8 +91,9 @@ namespace Game
 
         private void placeBalloonOnRandomBottomPoint(GameObject obj)
         {
+            var size = obj.GetComponent<SpriteRenderer>().localBounds.size;
             // Перемещаем шар вниз экрана
-            obj.transform.position = viewModel.getRandomBottomPoint(obj.transform.position.z);
+            obj.transform.position = viewModel.getRandomBottomPoint(obj.transform.position.z, size);
         }
     }
 }

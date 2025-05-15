@@ -17,6 +17,8 @@ namespace Game
         public IObservable<Sprite> startGame()
         {
             return Observable
+                // Задает фиксированный интервал - шар вылетает раз в две секунды
+                // TODO: добавить вылет шара в промежутке времени
                 .Interval(new TimeSpan(0, 0, 0, 2))
                 .Select(x => BalloonsLoader.getRandomBalloonSprite());
         }
@@ -31,7 +33,7 @@ namespace Game
             balloonsSpawnerDisposable?.Dispose();
         }
 
-        public Vector3 getRandomBottomPoint(float defaultZ)
+        public Vector3 getRandomBottomPoint(float defaultZ, Vector3 balloonSize)
         {
             Vector3 screenBottomLeft = Camera.main
                 .ViewportToWorldPoint(new Vector3(0, 0, Camera.main.nearClipPlane));
@@ -40,11 +42,10 @@ namespace Game
 
             float screenWidth = screenTopRight.x - screenBottomLeft.x;
             float screenHeight = screenTopRight.y - screenBottomLeft.y;
-            float bottomAreaHeight = screenHeight * 0.2f;
 
             // Выбираем случайное место внутри нижней части экрана
-            float randomX = UnityEngineRandom.Range(screenBottomLeft.x, screenTopRight.x);
-            float randomY = UnityEngineRandom.Range(screenBottomLeft.y, screenBottomLeft.y + bottomAreaHeight);
+            float randomX = UnityEngineRandom.Range(screenBottomLeft.x + balloonSize.x, screenTopRight.x - balloonSize.x);
+            float randomY = screenBottomLeft.y - balloonSize.y;
 
             return new Vector3(randomX, randomY, defaultZ);
         }
