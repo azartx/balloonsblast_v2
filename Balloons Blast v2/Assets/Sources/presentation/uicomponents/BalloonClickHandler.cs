@@ -2,6 +2,8 @@ using UnityEngine;
 using System.Collections.Generic;
 
 public class BalloonClickHandler : MonoBehaviour {
+
+    private bool isExplosionAnimationStarted = false;
     
     private static List<string> prefabsPaths = new List<string>
     {
@@ -19,22 +21,14 @@ public class BalloonClickHandler : MonoBehaviour {
         // Удаляю шар
         Destroy(gameObject);
 
-        // Забираю из ресурсов анимацию  взрыва
+        // Забираю из ресурсов анимацию взрыва с навешенным на нее компонентом Explosion.cs
         GameObject prefab = ExplosionLoader.GetExplosion(gameObject);
 
         // Создаю копию префаба на месте удаленного шара
-        GameObject explosion = Instantiate(
+        Instantiate(
             prefab,
             transform.position,
             Quaternion.identity
             );
-        
-        // запускаю анимацию префаба (взрыв)
-        explosion.GetComponent<ParticleSystem>().Play();
-
-        // Добавляем компонент аудио для проигрыша звука взрыва и запускаем
-        AudioSource clap = explosion.AddComponent<AudioSource>();
-        clap.clip = AudioLoader.RandomClap();
-        clap.Play();
     }
 }

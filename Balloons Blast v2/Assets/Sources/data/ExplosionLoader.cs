@@ -24,6 +24,9 @@ public class ExplosionLoader {
     
     private static GameObject ExplosionByPath(string path)
     {
-        return Resources.Load<GameObject>(path);
+        var prefab = Resources.Load<GameObject>(path);
+        prefab.AddComponent<Explosion>();
+
+        return prefab;
     }
 }
