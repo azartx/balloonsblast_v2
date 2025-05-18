@@ -114,5 +114,10 @@ namespace Game
             // Перемещаем шар вниз экрана
             obj.transform.position = viewModel.getRandomBottomPoint(obj.transform.position.z, size);
         }
+
+        private void OnDestroy()
+        {
+            GameScoreManager.Clear();
+        }
     }
 }
