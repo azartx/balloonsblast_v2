@@ -3,6 +3,7 @@ using UniRx;
 using UnityEngine;
 using Random = System.Random;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 namespace Game
 {
@@ -12,23 +13,42 @@ namespace Game
 
         private System.Lazy<Vector3> screenTopRight;
 
+        private Coroutine balloonsMovementCoroutine = null;
+
         private void Start()
         {
             screenTopRight = new System.Lazy<Vector3>(() =>
                 Camera.main.ViewportToWorldPoint(new Vector3(1, 1, Camera.main.nearClipPlane)));
+        }
 
+        public void StartGame()
+        {
+            GameScoreManager.Clear();
+            if (StaticPreferences.IsTimedGame())
+            {
+                gameObject.GetComponent<Timer>().StartGameTimer();
+            }
+            
             viewModel.addBalloonsSpawnerDisposable
                 (
                 viewModel.startGame()
                     .Subscribe(balloonSprite =>
                     {
-                        StartCoroutine(MoveBalloon(CreateBalloon(balloonSprite)));
+                        float speed = UnityEngine.Random.Range(0.009f, 0.028f);
+                        var balloon = CreateBalloon(balloonSprite, speed);
+
+                        StartCoroutine(MoveBalloon(balloon, speed));
                     })
                 );
         }
-        
+
+        public void StopGame()
+        {
+            viewModel.stopGame();
+        }
+
         // todo Добавить переиспользование шаров. Создать пул шаров
-        private GameObject CreateBalloon(Sprite balloonSprite)
+        private GameObject CreateBalloon(Sprite balloonSprite, float balloonSpeed)
         {
             // Создаём шар
             GameObject gameObj = new GameObject();
@@ -52,16 +72,15 @@ namespace Game
             BoxCollider2D collider = gameObj.AddComponent<BoxCollider2D>();
 
             // Вешаем обработчик кликов, клики будут приходить в него
-            gameObj.AddComponent<BalloonClickHandler>();
+            var clickHandler = gameObj.AddComponent<BalloonClickHandler>();
+            clickHandler.balloonSpeed = balloonSpeed;
 
             return gameObj;
         }
 
-        private IEnumerator MoveBalloon(GameObject obj)
+        private IEnumerator MoveBalloon(GameObject obj, float balloonSpeed)
         {
             placeBalloonOnRandomBottomPoint(obj);
-
-            float speed = UnityEngine.Random.Range(0.009f, 0.028f);
 
             var count = 0;
             while (count < 20)
@@ -73,7 +92,7 @@ namespace Game
                 }
                 
                 obj.transform.Translate(
-                    new Vector3(0, speed, 0)
+                    new Vector3(0, balloonSpeed, 0)
                 );
                 count = +1;
 

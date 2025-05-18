@@ -9,15 +9,16 @@ public class GameNavEvents : MonoBehaviour
     
     void Start()
     {
-        Button button = GetComponent<Button>();
-        if (button != null)
-        {
-            button.onClick.AddListener(OnBackButtonClicked);
-        }
-        else
-        {
-            Debug.LogError("Button reference is not set in the inspector.");
-        }
+        // Back buttun is not needed?
+        //Button button = GetComponent<Button>();
+        //if (button != null)
+        //{
+        //    button.onClick.AddListener(OnBackButtonClicked);
+        //}
+        //else
+        //{
+        //    Debug.LogError("Button reference is not set in the inspector.");
+        //}
     }
     
     void Update()
@@ -38,7 +39,7 @@ public class GameNavEvents : MonoBehaviour
         }
     }
 
-    private void OnBackButtonClicked()
+    public void OnBackButtonClicked()
     {
         SceneManager.LoadScene(Screens.MENU);
     }
