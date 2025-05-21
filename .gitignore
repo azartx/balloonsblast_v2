@@ -66,3 +66,6 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 [Aa]ssets/[Ss]treamingAssets/aa.meta
 [Aa]ssets/[Ss]treamingAssets/aa/*
+/Balloons Blast v2/.github
+/Balloons Blast v2/Packages/com.merry-yellow.code-assist
+*.vsconfig
