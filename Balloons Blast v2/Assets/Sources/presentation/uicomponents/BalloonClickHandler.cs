@@ -3,19 +3,6 @@ using System.Collections.Generic;
 
 public class BalloonClickHandler : MonoBehaviour {
 
-    private bool isExplosionAnimationStarted = false;
-    
-    private static List<string> prefabsPaths = new List<string>
-    {
-        "balloon_pop_prefabs/pop_1",
-        "balloon_pop_prefabs/pop_2",
-        "balloon_pop_prefabs/pop_3",
-        "balloon_pop_prefabs/pop_4",
-        "balloon_pop_prefabs/pop_5",
-        "balloon_pop_prefabs/pop_6",
-        "balloon_pop_prefabs/pop_7"
-    };
-
     public double balloonSpeed = 0.0;
 
     void OnMouseDown()

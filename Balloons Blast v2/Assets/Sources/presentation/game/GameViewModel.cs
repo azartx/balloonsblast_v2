@@ -1,7 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Sources.data;
+using System;
 using System.Linq;
-using Sources.data;
 using UniRx;
 using UnityEngine;
 using UnityEngineRandom = UnityEngine.Random;
@@ -14,13 +13,49 @@ namespace Game
         
         private IDisposable balloonsSpawnerDisposable = null;
 
+        public float Delay = 1f;
+
+        private Subject<Unit> _trigger = new Subject<Unit>();
+
+        private bool isBalloonsBoostEnabled = false;
+
         public IObservable<Sprite> startGame()
         {
-            return Observable
-                // Задает фиксированный интервал - шар вылетает раз в две секунды
-                // TODO: добавить вылет шара в промежутке времени
-                .Interval(new TimeSpan(0, 0, 0, 2))
-                .Select(x => BalloonsLoader.getRandomBalloonSprite());
+            return Observable.Create<Sprite>(observer =>
+             {
+                 return _trigger
+                 .StartWith(Unit.Default)
+                 .SelectMany(_ => Observable.Timer(TimeSpan.FromSeconds(getBalloobsCreationDelay())))
+                 .Subscribe(_ =>
+                      {
+                           observer.OnNext(BalloonsLoader.getRandomBalloonSprite());
+                           _trigger.OnNext(Unit.Default);
+                      }
+                  );
+             });
+
+        }
+
+        public void activateBalloonsBoost()
+        {
+            isBalloonsBoostEnabled = true;
+        }
+
+        public void diactivateBalloonsBoost()
+        {
+            isBalloonsBoostEnabled = false;
+        }
+
+        private float getBalloobsCreationDelay()
+        {
+            if (isBalloonsBoostEnabled)
+            {
+                return UnityEngine.Random.Range(0.8f, 1f);
+            }
+            else
+            {
+                return 0.1f;
+            }
         }
 
         public void addBalloonsSpawnerDisposable(IDisposable disposable)
@@ -31,6 +66,7 @@ namespace Game
         public void stopGame()
         {
             balloonsSpawnerDisposable?.Dispose();
+            diactivateBalloonsBoost();
         }
 
         public Vector3 getRandomBottomPoint(float defaultZ, Vector3 balloonSize)
