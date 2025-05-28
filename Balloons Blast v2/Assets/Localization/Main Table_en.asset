@@ -24,6 +24,30 @@ MonoBehaviour:
     m_Metadata:
       m_Items:
       - rid: 5171152022687449359
+  - m_Id: 14682055593984
+    m_Localized: Exit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2411390240641024
+    m_Localized: Play
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2411510352924672
+    m_Localized: User
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2411707938197504
+    m_Localized: Music
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2411714091241472
+    m_Localized: Back
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3177590251933696
+    m_Localized: Login with Email
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds:
