@@ -9,11 +9,12 @@ namespace Game
 {
     public class GameView : MonoBehaviour
     {
+        [SerializeField]
+        private GradientProgressBar progress;
+
         private GameViewModel viewModel = new GameViewModel();
 
         private System.Lazy<Vector3> screenTopRight;
-
-        private Coroutine balloonsMovementCoroutine = null;
 
         private void Start()
         {
@@ -74,6 +75,7 @@ namespace Game
             // Вешаем обработчик кликов, клики будут приходить в него
             var clickHandler = gameObj.AddComponent<BalloonClickHandler>();
             clickHandler.balloonSpeed = balloonSpeed;
+            clickHandler.progress = progress;
 
             return gameObj;
         }
@@ -87,7 +89,6 @@ namespace Game
             {
                 if (obj == null)
                 {
-                    print("Объект уже удалён, заканчиваю цикл");
                     yield break;
                 }
                 
@@ -98,7 +99,6 @@ namespace Game
 
                 if (obj.transform.position.y > screenTopRight.Value.y)
                 {
-                    print("Объект вышел за границы, удаление");
                     Destroy(obj);
                     yield break;
                 }
