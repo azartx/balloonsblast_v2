@@ -4,11 +4,15 @@ using UnityEngine;
 using Random = System.Random;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System;
 
 namespace Game
 {
     public class GameView : MonoBehaviour
     {
+        private readonly int BALLOONS_BOOST_TIME_SEC = 5;
+        private readonly int BALLOONS_PROGRESS_ACTIVATION_SEC = 3;
+
         [SerializeField]
         private GradientProgressBar progress;
 
@@ -20,6 +24,36 @@ namespace Game
         {
             screenTopRight = new System.Lazy<Vector3>(() =>
                 Camera.main.ViewportToWorldPoint(new Vector3(1, 1, Camera.main.nearClipPlane)));
+            SubscribeOnBalloonsProgressFilled();
+        }
+
+        // когда взрывы шариков заполняют прогресс бар - вызывается этот метод, запускается быстрый вылет шаров
+        private void SubscribeOnBalloonsProgressFilled()
+        {
+            progress.OnProgressFilled += (_, _) =>
+            {
+                // останавливаем движение прогресса и запускаем балон буст
+                progress.canUpdateProgress = false;
+                viewModel.activateBalloonsBoost();
+
+                // запускаем счетчик балон буста
+                Observable.Timer(TimeSpan.FromSeconds(BALLOONS_BOOST_TIME_SEC))
+                .Subscribe(_ =>
+                {
+                    // выключаем буст балонов по истечении счетчика
+                    viewModel.diactivateBalloonsBoost();
+
+                    // запускаем атймер для повторной активации прогресса (шаров на сцене еще много, если включить прогресс сразу - быстро заполнится)
+                    Observable.Timer(TimeSpan.FromSeconds(BALLOONS_PROGRESS_ACTIVATION_SEC))
+                    .Subscribe(_ =>
+                    {
+                        // запускаем прогресс
+                        progress.canUpdateProgress = true;
+                    })
+                    .AddTo(this);
+                })
+                .AddTo(this);
+            };
         }
 
         public void StartGame()

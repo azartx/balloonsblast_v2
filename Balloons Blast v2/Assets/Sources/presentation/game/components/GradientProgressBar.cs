@@ -16,6 +16,10 @@ public class GradientProgressBar : MonoBehaviour
     private Image _progressImage;
     private float _targetFill;
 
+    public bool canUpdateProgress = true;
+
+    public event EventHandler<Unit> OnProgressFilled;
+
     private void Awake()
     {
         _progressImage = GetComponent<Image>();
@@ -51,13 +55,14 @@ public class GradientProgressBar : MonoBehaviour
     /// <param name="value">Значение от 0 до 1 (0 - пусто, 1 - заполнен)</param>
     public void UpdateFill(float value)
     {
+        if (!canUpdateProgress) return;
+
         var newFill = _targetFill + value;
 
         if (newFill >= 1f)
         {
-            newFill = 1f;
-
-            // TODO 1) refresh progress to zero; 2) send event about progress is filled
+            OnProgressFilled.Invoke(this, Unit.Default);
+            newFill = 0f;
         }
 
         _targetFill = Mathf.Clamp01(newFill);
