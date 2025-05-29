@@ -50,11 +50,11 @@ namespace Game
         {
             if (isBalloonsBoostEnabled)
             {
-                return UnityEngine.Random.Range(0.8f, 1f);
+                return 0.1f;
             }
             else
             {
-                return 0.1f;
+                return UnityEngine.Random.Range(0.8f, 1f);
             }
         }
 
