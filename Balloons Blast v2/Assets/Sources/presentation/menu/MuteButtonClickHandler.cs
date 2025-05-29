@@ -13,6 +13,8 @@ class MuteButtonClickHandler : MonoBehaviour
     
     public void HandleAudioState()
     {
+        if (backgroundAudio == null) return;
+
         bool isAudioEnabled = ApplicationAudioController.IsAudioEnabled();
         
         ApplicationAudioController.ChangeAudioState(!isAudioEnabled);
