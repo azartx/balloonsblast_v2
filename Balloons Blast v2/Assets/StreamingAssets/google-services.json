@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "271795684778",
+    "project_id": "balloons-23e50",
+    "storage_bucket": "balloons-23e50.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:271795684778:android:81e78dde91bf1f8f20d7d3",
+        "android_client_info": {
+          "package_name": "com.balloons.game.balloons_game"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAIRhdHqTjyIv-QdqxTWi6ytWTYVynYHlk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

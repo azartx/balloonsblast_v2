@@ -57,6 +57,9 @@ sysinfo.txt
 *.unitypackage
 *.app
 
+#firebase
+/Balloons Blast v2/Assets/Firebase/Plugins/x86_64/
+
 # Crashlytics generated file
 crashlytics-build.properties
 
