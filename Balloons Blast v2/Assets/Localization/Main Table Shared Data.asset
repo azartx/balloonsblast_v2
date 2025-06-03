@@ -43,6 +43,38 @@ MonoBehaviour:
     m_Key: login_email
     m_Metadata:
       m_Items: []
+  - m_Id: 6091640304652288
+    m_Key: sign_in
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6091792742436864
+    m_Key: ' sign_out'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6092181227261952
+    m_Key: sign_up
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6092586006958080
+    m_Key: user_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6092695029501952
+    m_Key: email
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6092777221083136
+    m_Key: password
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6092901703831552
+    m_Key: password_repeat
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6096759440101376
+    m_Key: New Entry
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

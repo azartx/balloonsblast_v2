@@ -48,6 +48,34 @@ MonoBehaviour:
     m_Localized: Login with Email
     m_Metadata:
       m_Items: []
+  - m_Id: 6091640304652288
+    m_Localized: Sign In
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6091792742436864
+    m_Localized: Sign Out
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6092181227261952
+    m_Localized: Sign Up
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6092586006958080
+    m_Localized: User name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6092695029501952
+    m_Localized: Email
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6092777221083136
+    m_Localized: Password
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6092901703831552
+    m_Localized: Repeat password
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds:
